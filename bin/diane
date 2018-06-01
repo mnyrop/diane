@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'mercenary'
+require 'diane'
+
+Mercenary.program(:diane) do |p|
+  p.version Diane::VERSION
+  p.description ''
+  p.syntax "diane <subcommand> [options]"
+
+  p.command(:record) do |c|
+    c.syntax 'record MESSAGE'
+    c.description ''
+    c.option 'user', '--user', 'Override'
+    c.action do |args, opts|
+      message = args.first
+      Diane::Recorder.new(message, opts)
+    end
+  end
+
+  p.command(:playback) do |c|
+    c.syntax 'playback NUMBER'
+    c.description ''
+    c.option 'all', '--all', 'Playback all matching recordings (no int limit)'
+    c.option 'inorder', '--inorder', 'Playback oldest recordings first'
+    c.option 'everyone', '--everyone', 'Playback everyone\'s recording, not just your own'
+    c.action do |args, opts|
+      num = args.first.to_i.abs
+      num += 1 if num == 0
+      Diane::Player.new(num, opts)
+    end
+  end
+end
