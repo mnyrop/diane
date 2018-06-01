@@ -1,12 +1,10 @@
 # Diane [![Gem Version](https://badge.fury.io/rb/diane.svg)](https://badge.fury.io/rb/diane)
+### A tiny + salty Ruby CL utility for recording and playing back your thoughts/intel/motivations, without bloating the Git logs.
 
-> *I have been assigned a secretary. Her name is Diane. She seems an interesting cross between a saint and a cabaret singer.*
-
-A tiny + salty Ruby CL utility for recording and playing back your thoughts/intel/motivations, without bloating the Git logs.
+*I have been assigned a secretary. Her name is Diane.*<br>
+*She seems an interesting cross between a saint and a cabaret singer.*
 
 <img src="https://media.giphy.com/media/WubJTtnWXKfmM/giphy.gif" width="400"/>
-
-![diane screen gif](./docs/diane.gif)
 
 ## Installation
 
@@ -25,6 +23,9 @@ Or install it yourself as:
     $ gem install diane
 
 ## Usage
+
+![diane screen gif](./docs/diane.gif)
+
 
 TODO: Write usage instructions here
 
