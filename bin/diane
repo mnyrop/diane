@@ -5,13 +5,13 @@ require 'diane'
 
 Mercenary.program(:diane) do |p|
   p.version Diane::VERSION
-  p.description ''
+  p.description 'CL gem for recording and playing back thoughts/intel/motivations without bloating the Git logs.'
   p.syntax "diane <subcommand> [options]"
 
   p.command(:record) do |c|
     c.syntax 'record MESSAGE'
-    c.description ''
-    c.option 'user', '--user', 'Override'
+    c.description 'Record a new message with/to Diane'
+    c.option 'user', '--user USER', 'Set user manually, instead of fetching from git config (default)'
     c.action do |args, opts|
       message = args.first
       Diane::Recorder.new(message, opts)
@@ -20,10 +20,10 @@ Mercenary.program(:diane) do |p|
 
   p.command(:playback) do |c|
     c.syntax 'playback NUMBER'
-    c.description ''
-    c.option 'all', '--all', 'Playback all matching recordings (no int limit)'
-    c.option 'inorder', '--inorder', 'Playback oldest recordings first'
-    c.option 'everyone', '--everyone', 'Playback everyone\'s recording, not just your own'
+    c.description 'Playback existing recordings by querying Diane'
+    c.option 'all', '--all', 'Playback all matching recordings, instead of 1 (default) or a specified NUMBER'
+    c.option 'inorder', '--inorder', 'Playback oldest recordings first, stead of most recent (default)'
+    c.option 'user', '--user USER', 'Playback a specific user/all recordings, instead of your own (default)'
     c.action do |args, opts|
       num = args.first.to_i.abs
       num += 1 if num == 0
