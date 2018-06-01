@@ -1,4 +1,4 @@
-# Diane
+# Diane [![Gem Version](https://badge.fury.io/rb/diane.svg)](https://badge.fury.io/rb/diane)
 
 > *I have been assigned a secretary. Her name is Diane. She seems an interesting cross between a saint and a cabaret singer.*
 
