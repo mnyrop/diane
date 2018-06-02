@@ -26,6 +26,8 @@ Mercenary.program(:diane) do |p|
       instead of most recent (default))
     c.option :user, '--user USER', %(Playback a specific user/all
       recordings, instead of your own (default))
+    c.option :everyone, '--everyone', %(Playback a recordings regardless
+      of user, instead of your own (default))
     c.action do |args, opts|
       opts['num'] = args.first.to_i.abs
       Diane::Player.new(opts).play

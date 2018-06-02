@@ -10,6 +10,7 @@ module Diane
       @num        = opts.fetch(:num, 1)
       @inorder    = opts.fetch(:inorder, false)
       @user       = opts.fetch(:user, USER)
+      @everyone   = opts.fetch(:everyone, false)
       @all        = opts.fetch(:all, false)
       @recordings = query(all_recordings)
     end
@@ -25,7 +26,7 @@ module Diane
 
     def query(recordings)
       @num += 1 if @num.zero?
-      recordings.select! { |r| r[:user] == @user } unless @user == 'everyone'
+      recordings.select! { |r| r[:user] == @user } unless @everyone
       limit = @all ? recordings.length : [@num, recordings.length].min
       recordings.reverse! unless @inorder
       recordings.take(limit)
