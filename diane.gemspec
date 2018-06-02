@@ -1,9 +1,8 @@
 $LOAD_PATH.push File.expand_path('lib')
-require 'diane'
 
 Gem::Specification.new do |spec|
   spec.name          = 'diane'
-  spec.version       = Diane::VERSION
+  spec.version       = '0.1.0'
   spec.authors       = ['mnyrop']
   spec.email         = ['m.nyrop@columbia.edu']
 
