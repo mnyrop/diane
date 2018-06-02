@@ -5,29 +5,32 @@ require 'diane'
 
 Mercenary.program(:diane) do |p|
   p.version Diane::VERSION
-  p.description 'CL gem for recording and playing back thoughts/intel/motivations without bloating the Git logs.'
-  p.syntax "diane <subcommand> [options]"
+  p.description %(CL gem for recording and playing back thoughts/
+    intel/ motivations without bloating the Git logs.)
+  p.syntax 'diane <subcommand> [options]'
 
   p.command(:record) do |c|
     c.syntax 'record MESSAGE'
     c.description 'Record a new message with/to Diane'
-    c.option 'user', '--user USER', 'Set user manually, instead of fetching from git config (default)'
-    c.action do |args, opts|
-      message = args.first
-      Diane::Recorder.new(message, opts)
-    end
+    c.option :user, '--user USER', %(Set user manually,
+      instead of fetching from git config (default))
+    c.action { |args, opts| Diane::Recorder.new(args.first, opts).record }
   end
 
   p.command(:playback) do |c|
     c.syntax 'playback NUMBER'
-    c.description 'Playback existing recordings by querying Diane'
-    c.option 'all', '--all', 'Playback all matching recordings, instead of 1 (default) or a specified NUMBER'
-    c.option 'inorder', '--inorder', 'Playback oldest recordings first, stead of most recent (default)'
-    c.option 'user', '--user USER', 'Playback a specific user/all recordings, instead of your own (default)'
+    c.description %(Playback existing recordings by querying Diane)
+    c.option :all, '--all', %(Playback all matching recordings,
+      instead of 1 (default) or a specified NUMBER)
+    c.option :inorder, '--inorder', %(Playback oldest recordings first,
+      instead of most recent (default))
+    c.option :user, '--user USER', %(Playback a specific user/all
+      recordings, instead of your own (default))
+    c.option :everyone, '--everyone', %(Playback a recordings regardless
+      of user, instead of your own (default))
     c.action do |args, opts|
-      num = args.first.to_i.abs
-      num += 1 if num == 0
-      Diane::Player.new(num, opts)
+      opts['num'] = args.first.to_i.abs
+      Diane::Player.new(opts).play
     end
   end
 end
