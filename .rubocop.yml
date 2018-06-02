@@ -1,0 +1,8 @@
+AllCops:
+  Exclude:
+    - 'spec/**'
+Metrics/MethodLength:
+  Max: 12
+Metrics/BlockLength:
+  Exclude:
+    - 'bin/**'

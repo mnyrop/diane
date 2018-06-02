@@ -1,35 +1,35 @@
+require 'csv'
 
 module Diane
+  # class to record messages
   class Recorder
-    def initialize(message, opts)
-      @message  = escape(message)
-      @user = slug(opts.fetch('user', USER))
+    attr_reader :user
 
-      record
+    def initialize(message, opts)
+      abort 'Message is Nil. Fuck off.'.magenta if message.nil?
+
+      @message  = message
+      @user     = slug(opts.fetch(:user, USER))
+      @time     = Time.now.asctime
     end
 
     def record
       if File.exist? DIFILE
-        File.open(DIFILE, 'a') { |f| f.puts("#{@user},#{@message},#{TIME}") }
+        CSV.open(DIFILE, 'a') { |csv| csv << [@user, @message, @time] }
       else
-        File.open(DIFILE, 'a') do |f|
-          f.puts('user,message,time')
-          f.puts("#{@user},#{@message},#{TIME}")
+        CSV.open(DIFILE, 'a') do |csv|
+          csv << %w[user message time]
+          csv << [@user, @message, @time]
         end
       end
-      puts "✓".green
-    rescue => e
-      abort 'Broken'.magenta + "#{e}"
+      puts '✓'.green
+    rescue StandardError => e
+      abort 'Broken'.magenta + e
     end
 
-    def slug(s)
-      abort 'User is nil. Fuck off.'.magenta if s.nil?
-      s.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
-    end
-
-    def escape(s)
-      abort 'Message is Nil. Fuck off.'.magenta if s.nil?
-      "\"#{s.gsub('"','\\"')}\""
+    def slug(str)
+      abort 'User is nil. Fuck off.'.magenta if str.nil?
+      str.downcase.strip.tr(' ', '_').gsub(/[^\w-]/, '')
     end
   end
 end

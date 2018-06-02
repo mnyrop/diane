@@ -1,11 +1,8 @@
-require 'date'
-
-require 'diane/version'
 require 'diane/player'
 require 'diane/recorder'
 
 module Diane
-  DIFILE  = './DIANE'
+  DIFILE  = "#{`pwd`.strip}/DIANE".freeze
   USER    = `git config user.name`.strip
-  TIME    = DateTime.now.strftime("%d/%m/%Y %H:%M")
+  VERSION = '0.0.2'.freeze
 end
