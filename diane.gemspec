@@ -1,5 +1,4 @@
 $LOAD_PATH.push File.expand_path('lib')
-
 require 'diane'
 
 Gem::Specification.new do |spec|
