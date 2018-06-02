@@ -1,4 +1,5 @@
-# Diane [![Gem Version](https://badge.fury.io/rb/diane.svg)](https://badge.fury.io/rb/diane) [![Build Status](https://travis-ci.org/mnyrop/diane.svg?branch=master)](https://travis-ci.org/mnyrop/diane) [![Maintainability](https://api.codeclimate.com/v1/badges/0e84a1657af9d2258136/maintainability)](https://codeclimate.com/github/mnyrop/diane/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/0e84a1657af9d2258136/test_coverage)](https://codeclimate.com/github/mnyrop/diane/test_coverage) 
+# Diane 
+[![Gem Version](https://badge.fury.io/rb/diane.svg)](https://badge.fury.io/rb/diane) [![Build Status](https://travis-ci.org/mnyrop/diane.svg?branch=master)](https://travis-ci.org/mnyrop/diane) [![Maintainability](https://api.codeclimate.com/v1/badges/0e84a1657af9d2258136/maintainability)](https://codeclimate.com/github/mnyrop/diane/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/0e84a1657af9d2258136/test_coverage)](https://codeclimate.com/github/mnyrop/diane/test_coverage) 
 ### A Ruby CL documentation utility for recording and playing back your thoughts/intel/motivations, without bloating the Git logs. ☕️
 
 <br>
