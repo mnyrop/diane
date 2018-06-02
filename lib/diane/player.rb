@@ -2,46 +2,56 @@ require 'csv'
 require 'colorize'
 
 module Diane
+  # class to reconstruct and playback recordings
   class Player
-    def initialize(num, opts)
-      @num = num
-      @inorder = opts.fetch('inorder', false)
-      @user = opts.fetch('user', USER)
-      @all = opts.fetch('all', false)
-      @recordings = recordings
+    attr_reader :recordings, :user
 
-      play
+    def initialize(opts)
+      @num        = opts.fetch(:num, 1)
+      @inorder    = opts.fetch(:inorder, false)
+      @user       = opts.fetch(:user, USER)
+      @all        = opts.fetch(:all, false)
+      @recordings = query(all_recordings)
     end
 
-    def recordings
-      r = CSV.read(DIFILE, { headers: true }).map(&:to_hash)
-      r.select!{ |d| d['user'] == @user } unless @user == 'everyone'
-      limit = @all ? r.length : [@num, r.length].min
-      r.reverse! unless @inorder
-      r.take(limit)
+    def all_recordings
+      opts = {
+        headers: true,
+        header_converters: :symbol,
+        encoding: 'utf-8'
+      }
+      CSV.read(DIFILE, opts).map(&:to_hash)
+    end
+
+    def query(recordings)
+      @num += 1 if @num.zero?
+      recordings.select! { |r| r[:user] == @user } unless @user == 'everyone'
+      limit = @all ? recordings.length : [@num, recordings.length].min
+      recordings.reverse! unless @inorder
+      recordings.take(limit)
     end
 
     def preface
       position  = @inorder ? 'first' : 'last'
-      scope = @user == USER ? 'your' : "#{@user}'s"
-      if @recordings.length == 1
-        preface = "\nHere's the #{position} of #{scope} recordings:"
-      else
-        preface = "\nHere's the #{position} #{@recordings.length} of #{scope} recordings:"
-      end
+      scope     = @user == USER ? 'your' : "#{@user}'s"
+      preface = if @recordings.length == 1
+                  %(Here's the #{position} of #{scope} recordings:\n)
+                else
+                  %(Here's the #{position} #{@recordings.length}
+                    of #{scope} recordings:\n)
+                end
       preface.green
     end
 
     def play
-      if @recordings.empty?
-        puts "\nNo recordings from #{@user}. Fuck off.".magenta
-      else
-        puts preface
-        recordings.each do |r|
-          puts "\n#{r['time']} : ".cyan + "@#{r['user']}".yellow
-          puts "#{r['message']}"
-        end
+      abort %(None from #{@user}. Fuck off.).magenta if @recordings.empty?
+      stdout = preface
+      @recordings.each do |r|
+        stdout += "\n#{r[:time]} : ".cyan + "@#{r[:user]}".yellow
+        stdout += "\n#{r[:message]}\n\n"
       end
+      puts stdout
+      stdout
     end
   end
 end
