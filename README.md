@@ -1,5 +1,6 @@
 # Diane
-[![Gem Version](https://badge.fury.io/rb/diane.svg)](https://badge.fury.io/rb/diane) ![license](https://img.shields.io/github/license/mnyrop/diane.svg) ![GitHub top language](https://img.shields.io/github/languages/top/mnyrop/diane.svg)
+[![Gem Version](https://badge.fury.io/rb/diane.svg)](https://badge.fury.io/rb/diane) ![license](https://img.shields.io/github/license/mnyrop/diane.svg) ![GitHub top language](https://img.shields.io/github/languages/top/mnyrop/diane.svg) [![Inline docs](http://inch-ci.org/github/mnyrop/diane.svg?branch=master)](http://inch-ci.org/github/mnyrop/diane)
+
 
 [![Build Status](https://travis-ci.org/mnyrop/diane.svg?branch=master)](https://travis-ci.org/mnyrop/diane) [![Maintainability](https://api.codeclimate.com/v1/badges/0e84a1657af9d2258136/maintainability)](https://codeclimate.com/github/mnyrop/diane/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/0e84a1657af9d2258136/test_coverage)](https://codeclimate.com/github/mnyrop/diane/test_coverage) ![Libraries.io](https://img.shields.io/librariesio/github/mnyrop/diane.svg)
 
