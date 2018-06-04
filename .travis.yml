@@ -3,6 +3,7 @@ rvm:
   - 2.2
   - 2.3
   - 2.4
+  - 2.5
 env:
   global:
     - CC_TEST_REPORTER_ID=f771d5ac414479894286db3ea5f2f2ae8f90fb301593b37a5df1ac358d61d2a9
