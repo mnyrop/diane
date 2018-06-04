@@ -38,7 +38,7 @@ Or install it yourself as:
 
 <br>
 
-Diane has two subcommands: [`record`]() and [`playback`]():
+Diane has two subcommands: [`record`](#record) and [`playback`](#playback):
 
 
 ### Record
@@ -103,7 +103,7 @@ diane playback 3
 
 <br>
 
-For more, see Diane's [Yardoc]().
+For more, see Diane's [Yardoc](https://www.rubydoc.info/github/mnyrop/diane/master/Diane).
 
 <hr>
 
