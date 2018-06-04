@@ -2,7 +2,7 @@ require 'csv'
 require 'colorize'
 
 module Diane
-  # class to reconstruct and playback recordings
+  # Reconstructs and plays back recordings
   class Player
     attr_reader :recordings, :user
 
@@ -15,6 +15,8 @@ module Diane
       @recordings = query(all_recordings)
     end
 
+    # Returns hash array of all
+    # recordings in DIANE file
     def all_recordings
       opts = {
         headers: true,
@@ -24,6 +26,8 @@ module Diane
       CSV.read(DIFILE, opts).map(&:to_hash)
     end
 
+    # Generates a subset of recordings
+    # using command options (number, user, order)
     def query(recordings)
       @num += 1 if @num.zero?
       recordings.select! { |r| r[:user] == @user } unless @everyone
@@ -32,6 +36,8 @@ module Diane
       recordings.take(limit)
     end
 
+    # generates shell message describing
+    # the recordings returned by query
     def preface
       position  = @inorder ? 'first' : 'last'
       scope     = @user == USER ? 'your' : "#{@user}'s"
@@ -44,6 +50,8 @@ module Diane
       preface.green
     end
 
+    # returns and puts formatted recordings
+    # returned by query
     def play
       abort %(None from #{@user}. Fuck off.).magenta if @recordings.empty?
       stdout = preface

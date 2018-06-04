@@ -31,15 +31,80 @@ Or install it yourself as:
 <br>
 
 ## Usage
+<br>
+
+![diane screen gif](./diane.gif)
 
 <br>
 
-![diane screen gif](./docs/diane.gif)
+Diane has two subcommands: [`record`]() and [`playback`]():
+
+
+### Record
+
+
+#### Usage:
+```sh
+diane record MESSAGE
+```
+
+#### Example:
+```sh
+diane record "I'm in the middle of adding git-lfs. Remind me to return + test."
+```
+
+#### Options:
+
+- `--user USER` : By default, Diane records the message and attributes it to the git user currently logged in. To override this, use the `--user` option:
+
+    ```sh
+    diane record "the owls are not what they seem" --user "the_giant"
+    ```
+
+### Playback
+
+#### Usage:
+```sh
+diane playback NUMBER
+```
+
+#### Example:
+```sh
+diane playback 3
+```
+
+#### Options:
+
+- `--all` : By default, Diane plays back 1 recording or the `NUMBER` specified. To override this, use the `--all` option to return every recording that matches the query.
+
+    ```sh
+    diane playback --all
+    ```
+
+- `--user USER` : By default, Diane plays back the recording(s) attributed to the git user currently logged in. To override this, use the `--user` option:
+
+    ```sh
+    diane playback 3 --user "bob"
+    ```
+- `--everyone` : If you want to return a `NUMBER` of recordings irrespective of user, use the `--everyone` option.
+
+    ```sh
+    diane playback --all --everyone
+    ```
+- `--inorder` : By default, diane plays back the most recent recordings first. You can override this and reverse them with the option `--inorder`.
+
+    ```sh
+    diane playback 5 --inorder
+    ```
+<br>
+
+> __Note:__ By default, `diane playback` with no number or options returns the single most recent result by the logged in user.
 
 <br>
 
+For more, see Diane's [Yardoc]().
 
-TODO: Write usage instructions here
+<hr>
 
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
