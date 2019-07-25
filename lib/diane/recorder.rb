@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 module Diane
@@ -8,7 +10,7 @@ module Diane
     def initialize(message, opts)
       abort 'Message is Nil. Fuck off.'.magenta if message.nil?
       @message  = message
-      @user     = slug(opts.fetch(:user, USER))
+      @user     = slug opts.fetch(:user, USER)
       @time     = Time.now.asctime
     end
 

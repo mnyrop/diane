@@ -1,4 +1,4 @@
-require 'faker'
+# frozen_string_literal: true
 
 def fake_recordings(number)
   recordings = []
